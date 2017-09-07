@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <h3>购物车(102)</h3>
+        <span>编辑</span>
+    </header>
+    <section class="contain">
+
+         <!-- <div class="opt">
+            <div class="opt-left">
+                <p class="chec">
+                    <label for="all"></label>
+                </p>
+                <input type="checkbox" id="all">
+            </div>
+            <div class="opt-right">
+                <div class="opt-right-img">
+                    <img src="images/img1.jpg" alt="">
+                </div>
+                <div class="opt-right-explanation">
+                    <p>一说 智能机器人 S1 儿童陪伴机器人 早教故事机</p>
+                    <p> <span>￥898</span><span>￥1280</span> </p> 
+                </div>
+            </div>
+        </div>  -->
+        
+     <template  v-for="item in json">
+
+            <div class="opt">
+                <div class="opt-left">
+                    <p class="chec">
+                        <label for="all"></label>
+                    </p>
+                    <input type="checkbox" id="all">
+                </div>
+                <div class="opt-right">
+                    <div class="opt-right-img">
+                        <img :src=item.src alt="">
+                    </div>
+                    <div class="opt-right-explanation">
+                        <p>{{item.p1}}f</p>
+                        <p> <span>{{item.sp1}}</span><span>{{item.sp2}}</span> </p> 
+                    </div>
+                </div>
+            </div> 
+
+    </template> 
+       
+
+    </section>
+     <div class="close">
+        <div class="close-left">
+            <p class="chec"><label for="all"></label></p>
+            <p><input type="checkbox" id="all"><label for="all">全选</label></p>
+            
+        </div>
+        <div class="close-center">
+            <p>合计:<span>￥0</span></p>
+        </div>
+        <div class="close-right">结算<span>(0)</span></div>
+    </div> 
+    <footer class="footer">
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fa fa-home"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-group"></i>
+                    <span>微淘</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-comment-o"></i>
+                    <span>消息</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>购物车</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>我的淘宝</span>
+                </a>
+            </li>
+        </ul>
+    </footer>
+</body>
+<script src="js/vue2.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+    var vm=new Vue({
+        el:".contain",
+
+        data:{
+             json:[
+            //     {
+            //         src:"images/img1.jpg",
+            //         p1:"一说 智能机器人 S1 儿童陪伴机器人 早教故事机",
+            //         sp1:"￥898",
+            //         sp2:"￥1280"
+            //     },
+            //     {
+            //         src:"images/img2.jpg",
+            //         p1:"一说 智能机器人 S1 儿童陪伴机器人 早教故事机",
+            //         sp1:"￥898",
+            //         sp2:"￥1280"
+            //     },
+            //     {
+            //         src:"images/img3.jpg",
+            //         p1:"一说 智能机器人 S1 儿童陪伴机器人 早教故事机",
+            //         sp1:"￥898",
+            //         sp2:"￥1280"
+            //     }
+            //     ,
+            //     {
+            //         src:"images/img4.jpg",
+            //         p1:"一说 智能机器人 S1 儿童陪伴机器人 早教故事机",
+            //         sp1:"￥898",
+            //         sp2:"￥1280"
+            //     }
+            //     ,
+            //     {
+            //         src:"images/img1.jpg",
+            //         p1:"一说 智能机器人 S1 儿童陪伴机器人 早教故事机",
+            //         sp1:"￥898",
+            //         sp2:"￥1280"
+            //     },
+            //     {
+            //         src:"images/img3.jpg",
+            //         p1:"一说 智能机器人 S1 儿童陪伴机器人 早教故事机",
+            //         sp1:"￥898",
+            //         sp2:"￥1280"
+            //     }
+            //     ,
+            //     {
+            //         src:"images/img4.jpg",
+            //         p1:"一说 智能机器人 S1 儿童陪伴机器人 早教故事机",
+            //         sp1:"￥898",
+            //         sp2:"￥1280"
+            //     }
+             ]
+        },
+        created() {
+
+            $.ajax({
+                url:"http://localhost:8099/shopping",
+                type:"POST",
+                data:"name=as&pwd=123"
+            }).then(function(result){
+                console.log(result)
+                vm.json=result
+            },function(err){
+                  console.log(err)
+            })
+        }
+
+    })
+
+
+
+</script>
+</html>
